@@ -9,7 +9,7 @@ project "assimp"
 
   defines {
       -- "SWIG",
-      "ASSIMP_BUILD_NO_OWN_ZLIB",
+      -- "ASSIMP_BUILD_NO_OWN_ZLIB",
 
       "ASSIMP_BUILD_NO_X_IMPORTER",
       "ASSIMP_BUILD_NO_3DS_IMPORTER",
@@ -50,7 +50,7 @@ project "assimp"
       "ASSIMP_BUILD_NO_NDO_IMPORTER",
       "ASSIMP_BUILD_NO_IFC_IMPORTER",
       "ASSIMP_BUILD_NO_XGL_IMPORTER",
-      "ASSIMP_BUILD_NO_FBX_IMPORTER",
+      -- "ASSIMP_BUILD_NO_FBX_IMPORTER",
       "ASSIMP_BUILD_NO_ASSBIN_IMPORTER",
       -- "ASSIMP_BUILD_NO_GLTF_IMPORTER",
       "ASSIMP_BUILD_NO_C4D_IMPORTER",
@@ -124,6 +124,24 @@ project "assimp"
       "code/VertexTriangleAdjacency.cpp",
       "code/ObjFileImporter.cpp",
       "code/ObjFileMtlImporter.cpp",
+      "code/FBXAnimation.cpp",
+      "code/FBXBinaryTokenizer.cpp",
+      "code/FBXConverter.cpp",
+      "code/FBXDeformer.cpp",
+      "code/FBXDocument.cpp",
+      "code/FBXDocumentUtil.cpp",
+      "code/FBXImporter.cpp",
+      "code/FBXMaterial.cpp",
+      "code/FBXMeshGeometry.cpp",
+      "code/FBXModel.cpp",
+      "code/FBXNodeAttribute.cpp",
+      "code/FBXParser.cpp",
+      "code/FBXProperties.cpp",
+      "code/FBXTokenizer.cpp",
+      "code/FBXExporter.cpp",
+      "code/FBXExportNode.cpp",
+      "code/FBXExportProperty.cpp",
+      "code/FBXUtil.cpp",
       "code/ObjFileParser.cpp",
       "code/glTFImporter.cpp",
       "code/glTF2Importer.cpp",
@@ -137,18 +155,23 @@ project "assimp"
   includedirs {
       "include",
       "contrib/irrXML",
-      "contrib/zlib",
       "contrib/rapidjson/include",
   }
-
+  filter "action:xcode4"
+    sysincludedirs
+    {
+        "include",
+        "contrib/irrXML",
+        "contrib/rapidjson/include",
+    }
 
    filter "system:windows"
       systemversion "latest"
 
-   filter  "configurations:Debug"
+   filter  "configurations.Debug"
        runtime "Debug"
        symbols "on"
 
-   filter  "configurations:Release"
+   filter  "configurations.Release"
        runtime "Release"
        optimize "on"
